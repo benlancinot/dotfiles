@@ -1,0 +1,447 @@
+;; ┌────────────────────────────────────────────────────────────┐
+;; │░█▀█░█▀█░█░░░█░█░█▀▄░█▀█░█▀▄░░░░░░░░░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀│
+;; │░█▀▀░█░█░█░░░░█░░█▀▄░█▀█░█▀▄░░░░▀░░░░█░░░█░█░█░█░█▀▀░░█░░█░█│
+;; │░▀░░░▀▀▀░▀▀▀░░▀░░▀▀░░▀░▀░▀░▀░░░░▀░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀│
+;; └────────────────────────────────────────────────────────────┘
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+;----------------------------------------------------------
+;			C O L O R S
+;----------------------------------------------------------
+[colors]
+red                 =  #f22c40
+yellow              =  #d5911a
+blue                =  #6294ea
+green               =  #5ab738
+white               =  #BDBDBD
+black-light         =  #2E2E2E
+grey                =  #585858
+grey-dark           =  #585858
+
+;----------------------------------------------------------
+;			G L O B A L
+;----------------------------------------------------------
+
+[bar/bottom]
+
+monitor = ${env:MONITOR:eDP1}
+monitor-fallback =
+monitor-strict = false
+override-redirect = false
+
+;wm-restack = i3 
+
+bottom = true
+
+fixed-center = true
+width = 100%
+height = 21
+
+border-left-size  = 20
+border-right-size = 20
+border-bottom-size = 10
+
+background = ${colors.black-light}
+foreground = ${colors.white}
+
+radius-top = 3.0
+radius-bottom = 3.0
+
+line-size = 0
+line-color = ${colors.black-light}
+
+
+padding = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+separator =
+
+dim-value = 1.0
+
+wm-name = 
+locale = 
+
+
+dpi = 
+
+enable-ipc = true
+
+click-left = 
+click-middle = 
+click-right =
+scroll-up =
+scroll-down =
+double-click-left =
+double-click-middle =
+double-click-right =
+
+cursor-click = 
+cursor-scroll = 
+
+throttle-output = 5
+throttle-output-for = 10
+
+screenchange-reload = false
+
+compositing-background = source
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+format-foreground = 
+format-background = 
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+pseudo-transparency = false
+
+; ;----------------------------------------------------------
+; ;             T R A Y
+; ;----------------------------------------------------------
+
+tray-position = none
+tray-detached = false
+tray-maxsize = 16
+tray-background = ${color.background}
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 0
+tray-scale = 1.0
+
+;----------------------------------------------------------
+;			F O N T S
+;----------------------------------------------------------
+
+font-0 = Hack:size=9;1
+font-1 = FontAwesome:size=10;1
+font-2 = MaterialIcons:size=10;1
+font-3 = Hack:size=9;3
+
+
+;----------------------------------------------------------
+;       M O D U L E    L A Y O U T S
+;----------------------------------------------------------
+
+modules-left = date separator bluetooth vpn wireless-network separator updates i3mode
+modules-center = battery-warning i3
+modules-right = rooticon filesystemroot homeicon filesystemhome separator temperature cpuicon cpu memoryicon memory separator backlight pulseaudio battery
+
+;----------------------------------------------------------
+;                SEPARATOR
+;----------------------------------------------------------
+
+
+[module/separator]
+type = custom/text
+content = " "
+content-foreground = ${colors.white}
+
+
+;----------------------------------------------------------
+;                SPOTIFY
+;----------------------------------------------------------
+
+[module/spotify]
+type = custom/script
+interval = 1
+format = "<label>"
+exec = spotify-dbus-infos
+format-underline = #1db954
+
+
+;----------------------------------------------------------
+;		I 3    M O D U L E S
+;----------------------------------------------------------
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+use-ui-max = true
+interval = 5
+
+format-volume = <ramp-volume><label-volume>
+label-volume = "%percentage%% "
+label-volume-foreground = ${colors.white}
+label-muted = "  0% "
+label-muted-foreground = ${colors.red}
+
+ramp-volume-0 = " "
+ramp-volume-0-foreground = ${colors.grey}
+ramp-volume-1 = " "
+ramp-volume-1-foreground = ${colors.grey}
+ramp-volume-2 = " "
+ramp-volume-2-foreground = ${colors.grey}
+ramp-volume-3 = " "
+ramp-volume-3-foreground = ${colors.red}
+
+;**********************************************************
+
+[module/backlight]
+;;type = internal/xbacklight
+;;card = intel_backlight
+type = internal/xbacklight
+enable-scroll = true
+
+format = <ramp><label>
+ramp-0 = " "
+ramp-0-foreground = ${colors.grey}
+ramp-1 = " "
+ramp-1-foreground = ${colors.grey}
+ramp-2 = " "
+ramp-2-foreground = ${colors.grey}
+label = " %percentage%%"
+
+;**********************************************************
+
+
+[module/battery]
+type = internal/battery
+full-at = 98
+
+format-charging = <ramp-capacity><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+format-full = <label-full>
+
+ramp-capacity-0 = "  "
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1 = "  "
+ramp-capacity-1-foreground = ${colors.grey}
+ramp-capacity-2 = "  "
+ramp-capacity-2-foreground = ${colors.grey}
+ramp-capacity-3 = "  "
+ramp-capacity-3-foreground = ${colors.grey}
+ramp-capacity-4 = "  "
+ramp-capacity-4-foreground = ${colors.grey}
+
+label-charging = " "
+label-charging-foreground = ${colors.green}
+label-discharging = "%percentage%% "
+label-full = "  "
+label-full-foreground = ${colors.green}
+
+animation-charging-framerate = 750
+
+;**********************************************************
+
+[module/battery-warning]
+type = custom/script
+exec = ~/.config/polybar/scripts/battery-notify/battery-notify.sh
+interval = 180
+
+;**********************************************************
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+pin-workspaces = true
+index-sort = true
+
+
+label-focused-font = 1
+label-unfocused-font = 1
+label-urgent-font = 1
+label-visible-font = 1
+
+label-focused = "%{T4}%name%%{T-}"
+label-focused-foreground = ${colors.blue}
+label-focused-padding = 1
+
+label-unfocused = "%{T4}%name%%{T-}"
+label-unfocused-padding = 1
+label-unfocused-foreground =  ${colors.grey}
+
+label-urgent = "%{T4}%name%%{T-}"
+label-urgent-padding = 1
+label-urgent-foreground = ${colors.red}
+
+label-visible = "%{T4}%name%%{T-}"
+label-visible-padding = 1
+label-visible-foreground = ${colors.white}
+
+
+[module/i3mode]
+type = internal/i3
+format = <label-mode>
+index-sort = true
+
+label-mode =  %mode%
+label-mode-padding = 2
+label-mode-foreground = ${colors.red}
+
+;**********************************************************
+
+[module/cpuicon]
+type = custom/text
+content = ""
+content-foreground = ${colors.grey}
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label>
+
+label = "%percentage:2%% "
+label-foreground=  ${colors.white}
+
+;**********************************************************
+
+[module/date]
+type = custom/script
+format-prefix = " "
+format-prefix-foreground = ${colors.grey}
+exec = date +' %Y-%m-%d %H:%M '
+tail = false
+interval = 1
+click-left = minetime
+
+
+;**********************************************************
+
+
+[module/memoryicon]
+type = custom/text
+content = ""
+content-foreground = ${colors.grey}
+
+[module/memory]
+type = internal/memory
+format = <label>
+
+label = "%percentage_used:2%% "
+
+
+;**********************************************************
+
+
+[module/wireless-network]
+type = internal/network
+interface = wlp0s20f3
+interval = 2.0
+
+format-connected = <ramp-signal><label-connected>
+label-connected =" %{A1:$TERM -e nmtui:}%essid%%{A} "
+label-connected-foreground = ${colors.white}
+label-disconnected = "%{A1:$TERM -e nmtui:}  %{A}"
+label-disconnected-foreground = ${colors.grey}
+
+ramp-signal-0 = ""
+ramp-signal-0-foreground = ${colors.red}
+ramp-signal-1 = ""
+ramp-signal-1-foreground = ${colors.yellow}
+ramp-signal-2 = ""
+ramp-signal-2-foreground = ${colors.white}
+ramp-signal-3 = ""
+ramp-signal-3-foreground = ${colors.blue}
+ramp-signal-4 = ""
+ramp-signal-4-foreground = ${colors.green}
+
+
+;**********************************************************
+
+
+[module/wired-network]
+type = internal/network
+interface = enp3s0
+interval = 2.0
+
+format-connected = <ramp-signal> <label-connected>
+label-connected =" %essid% "
+
+ramp-signal-0 = 
+ramp-signal-0-foreground = ${colors.red}
+ramp-signal-1 = 
+ramp-signal-1-foreground = ${colors.yellow}
+ramp-signal-2 = 
+ramp-signal-2-foreground = ${colors.white}
+ramp-signal-3 = 
+ramp-signal-3-foreground = ${colors.blue}
+ramp-signal-4 = 
+ramp-signal-4-foreground = ${colors.green}
+
+
+;**********************************************************
+
+[module/temperature]
+type = custom/script
+exec = ~/.config/polybar/scripts/temperature/temp.sh
+interval = 20
+
+;**********************************************************
+
+
+[module/rooticon]
+type = custom/text
+content = ""
+content-foreground = ${colors.grey}
+
+[module/filesystemroot]
+type = internal/fs
+mount-0 = /
+interval = 180
+fixed-values = true
+
+spacing = 4
+format-mounted = <label-mounted>
+format-unmounted = <label-unmounted>
+
+
+label-mounted =  " %free% "
+label-unmounted = " not mnt "
+
+;**********************************************************
+
+[module/homeicon]
+type = custom/text
+content = ""
+content-foreground = ${colors.grey}
+
+[module/filesystemhome]
+type = internal/fs
+mount-0 = /home
+interval = 10
+fixed-values = true
+
+spacing = 4
+format-mounted = <label-mounted>
+format-unmounted = <label-unmounted>
+
+label-mounted = " %free%"
+label-unmounted =" not mnt"
+
+
+;**********************************************************
+
+
+[module/vpn]
+type = custom/script
+interval = 4
+exec = ~/.config/polybar/scripts/vpn/vpn.sh
+
+
+;**********************************************************
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/scripts/bluetooth/check_bluetooth.sh
+interval = 2
+click-left = exec blueberry
+click-right = exec ~/.config/polybar/scripts/bluetooth/toggle_bluetooth.sh
+format-padding = 1
+
+
+;**********************************************************
+
+[module/updates]
+type = custom/script
+format-prefix = "  "
+format-prefix-foreground = ${colors.grey}
+exec = ~/.config/polybar/scripts/yay/updates-arch-yay.sh
+interval = 600
+click-left = ~/.config/polybar/scripts/yay/prompt-updates.sh &

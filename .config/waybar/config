@@ -1,0 +1,149 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "height": 24,
+    "width": 1850,                                                                                     
+    "margin-bottom": 5, 
+    "modules-left": ["custom/updates", "custom/todo", "sway/workspaces","tray", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "disk","custom/disk_home", "bluetooth","network", "backlight", "pulseaudio", "temperature", "battery"],
+
+    "sway/workspaces": {
+        "format": "{name}"
+    },
+                                                                                                
+    "sway/mode": {                                                                                    
+        "format": "<span style=\"italic\">{}</span>"                                                  
+    },
+    
+    "sway/window": {
+        "max-length": 25,
+        "tooltip": false
+    },
+
+    "clock": {
+        "interval": 10,
+        "locale": "C",
+        "timezone": "Europe/Paris",
+        "format": "{: %a %d %b  %H:%M}",
+        "on-click": "gnome-calendar",
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "{usage:2}%",
+        "max-length": 10,
+        "on-click": "kitty -e 'htop'"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "{percentage:2}%",
+
+        "max-length": 10,
+        "tooltip": false,
+        "warning": 70,
+        "critical": 90
+    },
+
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}% ",
+        "format-charging": " {capacity}% ",
+        "format-plugged": "  {capacity}% ",
+        "format-icons": ["", "", "", "", ""],
+        "format-alt": "{icon} {time} ",
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+	    "format-critical": " {temperatureC}°",
+	    "format": " {temperatureC}°"
+    },
+    
+    "network": {
+        "format": "{icon} {essid}  {signalStrength}%",
+        "format-alt": " {icon} {ipaddr}/{cidr}",
+        "format-alt-click": "click-right",
+        "format-wifi": "{icon} {essid}  {signalStrength}%",
+        "format-icons": {
+            "wifi": ["睊", "直" ,""],
+            "ethernet": [""],
+            "disconnected": [""]
+        },
+        "on-click": "nm-connection-editor",
+        "tooltip-format": "{ifname}: {ipaddr}",
+    },
+
+    "pulseaudio": {
+      // "scroll-step": 1, // %, can be a float
+      "format": "{icon} {volume}% {format_source}",
+      "format-bluetooth": "{icon} {volume}% {format_source}",
+      "format-bluetooth-muted": " {format_source}",
+      "format-muted": "  {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "🎧",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": [""],
+        "on-scroll-down": "brightnessctl -c backlight set 5%-",
+        "on-scroll-up": "brightnessctl -c backlight set +5%"
+    },
+
+    "tray": {
+        "icon-size": 15
+    },
+
+	"custom/disk_home": {
+		"format": " {}iB ",
+		"interval": 120,
+		"exec": "df -h --output=avail $HOME | tail -1 | tr -d ' '"
+	},
+    
+    "disk": {
+        "interval": 120,
+        "format": " {free}" 
+    },
+    
+    "bluetooth": {
+    	"format": "  ",
+        "format-disabled": "  ",
+        "format-connected": "  {num_connections} ",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+    	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+     	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueberry",
+        "on-click-right": " ~/.config/polybar/scripts/bluetooth/toggle_bluetooth.sh", 
+    },
+    
+    "custom/updates": {                                                                              
+        "format": "    {} ",
+        "interval": 3600,
+        "exec": "~/.config/polybar/scripts/yay/updates-arch-yay.sh",
+        "on-click": "kitty --hold sh -c 'yay -Syu; paccache -r'"
+    },
+
+	"custom/todo": {
+		"format": "{} |",
+        "exec":"~/.config/polybar/scripts/task/count.sh",
+        "on-click": "kitty --hold bash -c task",
+        "interval": 360,
+	},
+}

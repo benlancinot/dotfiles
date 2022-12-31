@@ -1,0 +1,31 @@
+# Colors
+background-color=#303446
+text-color=#c6d0f5
+border-color=#8caaee
+progress-color=over #414559
+
+layer=top
+sort=-priority
+markup=1
+anchor=top-right
+width=350
+height=200
+max-icon-size=64
+icon-location=right
+margin=20,20,0
+padding=15,15,15
+
+group-by=summary
+
+border-size=2
+border-radius=7
+font=Hack Nerd Font 10
+icons=1
+icon-path=/usr/share/icons/Papirus-Dark
+max-icon-size=64
+default-timeout=15000
+ignore-timeout=1
+
+[urgency=high]
+border-color=#ef9f76
+default-timeout=0

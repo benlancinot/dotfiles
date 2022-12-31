@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+#cotributor: Henrique Jung <henriquenj@gmail.com>
+#name: File description
+#key: file
+#group: doxygen
+# --
+/**
+ * \file ${1:`(file-name-nondirectory(buffer-file-name))`}
+ * \brief ${2: TODO}
+ * \author Benjamin Lancinot
+ * \date `(format-time-string "<%d/%m/%Y>" (current-time))`
+ *
+ * ${4: TODO}
+ */
