@@ -18,6 +18,14 @@ bindsym $mod+n border normal
 # Font for window titles
 font pango: Hack 10
 
+# Theme
+client.focused          #ffc0cb #ffc0cb #ffffff
+client.unfocused        #2e3440 #1f222d #888888
+client.focused_inactive #2e3440 #1f222d #888888 
+client.placeholder      #2e3440 #1f222d #888888
+client.urgent           #D08770 #D08770 #ffffff
+client.background       #242424
+
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
@@ -256,13 +264,14 @@ mode "$mode_gaps_outer" {
 }
 
 
-
+#######################################################################################
 # Autostart applications
-exec_always --no-startup-id .config/polybar/scripts/launch_polybar.sh &
+#######################################################################################
+exec_always --no-startup-id .polybar/launch_polybar.sh &
 
 # Autostart applications
 exec --no-startup-id setxkbmap -layout fr
 exec --no-startup-id feh --bg-scale ~/Images/sunmountains.jpg
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec sudo powertop --auto-tune
