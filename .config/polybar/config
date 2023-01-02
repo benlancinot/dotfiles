@@ -10,14 +10,14 @@
 ;			C O L O R S
 ;----------------------------------------------------------
 [colors]
-red                 =  #f22c40
-yellow              =  #d5911a
-blue                =  #6294ea
-green               =  #5ab738
-white               =  #BDBDBD
-black-light         =  #2E2E2E
-grey                =  #585858
-grey-dark           =  #585858
+red                 =  #e78284
+yellow              =  #e5c890
+blue                =  #8caaee
+green               =  #a6d189
+white               =  #a5adce
+black-light         =  #232634
+grey                =  #303446
+grey-dark           =  #303446
 
 ;----------------------------------------------------------
 ;			G L O B A L
