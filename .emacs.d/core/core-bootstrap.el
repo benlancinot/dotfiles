@@ -12,7 +12,8 @@
 ;; Tous les packages nécessaires
 (defconst my-packages
   '(use-package
-     hydra
+     autothemer
+     paradox
      ivy
      swiper
      counsel
@@ -22,7 +23,6 @@
      prescient
      ivy-prescient
      smex
-     flymd
      projectile
      ace-window
      ggtags
@@ -31,14 +31,12 @@
      dtrt-indent
      ws-butler
      yasnippet
-     multiple-cursors
      undo-tree
      flycheck
      neotree
      exec-path-from-shell
      eglot
      company
-     company-go
      doom-themes
      doom-modeline
      markdown-mode

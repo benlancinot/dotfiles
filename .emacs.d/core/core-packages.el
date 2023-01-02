@@ -163,7 +163,7 @@
         ("C-S-z"     . redo))
   :custom
   (undo-tree-auto-save-history t)
-  (undo-tree-history-directory-alist '(("." . "~/.config/emacs/undo-tree-history")))
+  (undo-tree-history-directory-alist '(("." . "~/.emacs.d/persistent/undo-tree-history")))
   (undo-tree-visualizer-diff t)
   (undo-tree-visualizer-timestamps t))
 
@@ -228,8 +228,6 @@
 (use-package neotree
   :config
   :bind (("C-c m" . neotree-toggle)))
-
-(use-package multiple-cursors)
 
 (use-package eglot
   :ensure t
