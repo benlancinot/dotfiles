@@ -30,8 +30,6 @@ input type:touchpad {
     tap_button_map lrm
 }
 
-output eDP-1 pos 0 0 res 1920x1080
-
 ###  wallpaper
 output * bg ~/Images/arch-black-4k.png fill
 

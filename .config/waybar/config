@@ -137,13 +137,15 @@
         "format": "    {} ",
         "interval": 3600,
         "exec": "~/.config/polybar/scripts/yay/updates-arch-yay.sh",
-        "on-click": "kitty --hold sh -c 'yay -Syu; paccache -r'"
+        "on-click": "kitty --hold sh -c 'yay -Syu; paccache -r; pkill -SIGRTMIN+8 waybar'",
+        "signal": 8
     },
 
 	"custom/todo": {
 		"format": "{} |",
         "exec":"~/.config/polybar/scripts/task/count.sh",
-        "on-click": "kitty --hold bash -c task",
+        "on-click": "kitty --hold sh -c 'task; pkill -SIGRTMIN+9 waybar'",
         "interval": 360,
+        "signal": 9,
 	},
 }

@@ -11,7 +11,7 @@ configuration {
 * {
     bg-col:  #303446;
     bg-col-light: #303446;
-    border-col: #303446;
+    border-col: #f4b8e4;
     selected-col: #303446;
     blue: #8caaee;
     fg-col: #c6d0f5;
@@ -29,7 +29,7 @@ window {
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
-    border:							0px;
+    border:							2px;
     border-radius:                  3px;
 	width:							25%;
     border-color: @border-col;
@@ -70,7 +70,7 @@ entry {
 listview {
     border: 0px 0px 0px;
     padding: 6px 0px 0px;
-    margin: 10px 0px 0px 20px;
+    margin: 10px 10px 10px 10px;
     columns: 2;
     lines: 5;
     background-color: @bg-col;

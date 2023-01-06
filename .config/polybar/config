@@ -169,16 +169,16 @@ interval = 5
 format-volume = <ramp-volume><label-volume>
 label-volume = "%percentage%% "
 label-volume-foreground = ${colors.white}
-label-muted = "  0% "
+label-muted = "  0% "
 label-muted-foreground = ${colors.red}
 
-ramp-volume-0 = " "
+ramp-volume-0 = " "
 ramp-volume-0-foreground = ${colors.grey}
-ramp-volume-1 = " "
+ramp-volume-1 = " "
 ramp-volume-1-foreground = ${colors.grey}
-ramp-volume-2 = " "
+ramp-volume-2 = " "
 ramp-volume-2-foreground = ${colors.grey}
-ramp-volume-3 = " "
+ramp-volume-3 = " "
 ramp-volume-3-foreground = ${colors.red}
 
 ;**********************************************************
@@ -190,11 +190,11 @@ type = internal/xbacklight
 enable-scroll = true
 
 format = <ramp><label>
-ramp-0 = " "
+ramp-0 = ""
 ramp-0-foreground = ${colors.grey}
-ramp-1 = " "
+ramp-1 = ""
 ramp-1-foreground = ${colors.grey}
-ramp-2 = " "
+ramp-2 = ""
 ramp-2-foreground = ${colors.grey}
 label = " %percentage%%"
 
@@ -328,18 +328,18 @@ interval = 2.0
 format-connected = <ramp-signal><label-connected>
 label-connected =" %{A1:$TERM -e nmtui:}%essid%%{A} "
 label-connected-foreground = ${colors.white}
-label-disconnected = "%{A1:$TERM -e nmtui:}  %{A}"
+label-disconnected = "%{A1:$TERM -e nmtui:} 睊 %{A}"
 label-disconnected-foreground = ${colors.grey}
 
-ramp-signal-0 = ""
+ramp-signal-0 = "W"
 ramp-signal-0-foreground = ${colors.red}
-ramp-signal-1 = ""
+ramp-signal-1 = "W"
 ramp-signal-1-foreground = ${colors.yellow}
-ramp-signal-2 = ""
+ramp-signal-2 = "W"
 ramp-signal-2-foreground = ${colors.white}
-ramp-signal-3 = ""
+ramp-signal-3 = "W"
 ramp-signal-3-foreground = ${colors.blue}
-ramp-signal-4 = ""
+ramp-signal-4 = "W"
 ramp-signal-4-foreground = ${colors.green}
 
 
