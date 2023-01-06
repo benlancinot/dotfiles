@@ -1,0 +1,19 @@
+color.label=magenta
+color.label.sort=magenta
+color.header=cyan
+color.footnote=yellow
+color.warning=bold red
+color.error=white on red
+color.debug=blue
+
+# Files
+data.location=/home/ben/.task
+
+default.command=ls
+
+report.minimal.sort=project+,priority+,due+  
+report.list.sort=project+,priority+,due+
+report.active.sort=project+,priority+,due+
+report.all.sort=project+,priority+,due+
+report.long.sort=project+,priority+,due+
+report.ls.sort=project+,priority+,due+
