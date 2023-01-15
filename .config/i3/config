@@ -267,7 +267,7 @@ mode "$mode_gaps_outer" {
 #######################################################################################
 # Autostart applications
 #######################################################################################
-exec_always --no-startup-id .polybar/launch_polybar.sh &
+exec_always --no-startup-id .config/polybar/scripts/launch_polybar.sh &
 
 # Autostart applications
 exec --no-startup-id setxkbmap -layout fr

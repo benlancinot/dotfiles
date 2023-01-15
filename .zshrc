@@ -15,10 +15,14 @@ plugins=(zsh-syntax-highlighting git archlinux man golang kubectl zsh-autosugges
 source $ZSH/oh-my-zsh.sh
 
 # Common alias
-alias l='colorls --sd'
-alias la='colorls --sd -Al'
-alias ll='colorls --sd -l'
-alias lrt='ls -1Fcrt'
+alias ls='lsd'
+alias ll='ls -al'
+
+alias cat='bat --style=plain'
+
+alias prev="fzf --preview 'bat --style=numbers --color=always {}'"
+export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
+export FZF_CTRL_T_OPTS="--min-height 30 --preview-window down:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 
 alias zshrc='${=EDITOR} ~/.zshrc' # Quick access to the ~/.zshrc file
 
@@ -72,7 +76,5 @@ alias x_dualscreen_off="xrandr --output  $(xrandr | grep " connected " | grep -v
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
-export TERM=rxvt-unicode-256color
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
