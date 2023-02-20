@@ -6,7 +6,7 @@
     "margin-bottom": 5, 
     "modules-left": ["custom/updates", "custom/todo", "sway/workspaces","tray", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "disk","custom/disk_home", "bluetooth","network", "backlight", "pulseaudio", "temperature", "battery"],
+    "modules-right": ["cpu", "memory", "disk","custom/disk_home", "bluetooth","network", "backlight", "pulseaudio", "temperature", "battery", "custom/battery-notify"],
 
     "sway/workspaces": {
         "format": "{name}"
@@ -57,6 +57,12 @@
         "format-plugged": "  {capacity}% ",
         "format-icons": ["", "", "", "", ""],
         "format-alt": "{icon} {time} ",
+    },
+
+    "custom/battery-notify": {                                                                                  
+        "format": "",                                                                             
+        "exec":"~/.config/polybar/scripts/battery-notify/battery-notify.sh",                                             
+        "interval": 120,                                                                              
     },
 
     "temperature": {
@@ -147,5 +153,5 @@
         "on-click": "kitty --hold sh -c 'task; pkill -SIGRTMIN+9 waybar'",
         "interval": 360,
         "signal": 9,
-	},
+	}, 
 }

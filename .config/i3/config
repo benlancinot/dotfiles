@@ -200,7 +200,7 @@ mode "app" {
     bindsym v exec vlc
     bindsym g exec chromium
     bindsym c exec gnome-calendar
-    bindsym s exec spotify-launcher
+    bindsym s exec spotify
     bindsym Print exec --no-startup-id flameshot gui
 
     bindsym Esc mode "default"

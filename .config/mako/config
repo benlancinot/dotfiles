@@ -28,4 +28,6 @@ ignore-timeout=1
 
 [urgency=high]
 border-color=#ef9f76
+background-color=#ff6666
+text-color=#303446
 default-timeout=0

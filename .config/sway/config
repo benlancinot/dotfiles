@@ -4,17 +4,8 @@ set $mod Mod4
 
 set $term kitty
 set $menu rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/catppuccin-frappe.rasi
-set $lock swaylock \
-        --screenshots \
-        --effect-blur 7x7 \
-        --effect-vignette 0.5:0.5 \
-        --key-hl-color 880033 \
-        --line-color 00000000 \
-        --inside-color 00000088 \
-        --separator-color 00000000 \
-        --grace 2 \
-        --fade-in 0.2
-
+set $lock swaylock --screenshots --effect-blur 7x7 --effect-vignette 0.5:0.5 --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2
+        
 # Font for window titles
 font pango: Hack 9
 
@@ -38,8 +29,8 @@ default_border pixel 2.3
 gaps inner 5
 gaps outer 4
 
-smart_gaps on
-smart_borders on
+smart_gaps off
+smart_borders off
 
 # Theme
 client.focused          #ffc0cb #ffc0cb #ffffff
@@ -169,7 +160,7 @@ mode "app" {
     bindsym v exec vlc
     bindsym g exec chromium
     bindsym c exec gnome-calendar
-    bindsym s exec spotify-launcher
+    bindsym s exec spotify
     bindsym Print exec --no-startup-id slurp | grim -g - ~/Images/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
     bindsym Escape mode "default"
     bindsym Return mode "default"

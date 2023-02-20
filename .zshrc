@@ -18,8 +18,6 @@ source $ZSH/oh-my-zsh.sh
 alias ls='lsd'
 alias ll='ls -al'
 
-alias cat='bat --style=plain'
-
 alias prev="fzf --preview 'bat --style=numbers --color=always {}'"
 export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
 export FZF_CTRL_T_OPTS="--min-height 30 --preview-window down:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
@@ -74,7 +72,26 @@ alias x_dualscreen_left="xrandr --output eDP1 --auto --output $(xrandr | grep " 
 alias x_dualscreen_right="xrandr --output eDP1 --auto --output $(xrandr | grep " connected " | grep -v primary | awk '{print $1}') --auto --right-of eDP1 && ~/.polybar/launch_polybar.sh"
 alias x_dualscreen_off="xrandr --output  $(xrandr | grep " connected " | grep -v primary | awk '{print $1}') --off && ~/.polybar/launch_polybar.sh"
 
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt inc_append_history # save history entries as soon as they are entered
+setopt share_history # share history between different instances of the shell
+setopt auto_cd # cd by typing directory name if it's not a command
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
+setopt extended_history         # Also record time and duration of commands.
+setopt hist_expire_dups_first   # Clear duplicates when trimming internal hist.
+setopt hist_find_no_dups        # Dont display duplicates during searches.
+setopt hist_ignore_dups         # Ignore consecutive duplicates.
+setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
+setopt hist_ignore_space        # Ignore commands that start with space.
+setopt hist_ignore_dups
+
+HISTSIZE=1000
+SAVEHIST=1000
+HISTORY_IGNORE='([bf]g *|cd ..*|l[a,l,s,h,]*|less *|nmcli device wifi connect*)'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
