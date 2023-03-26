@@ -35,7 +35,7 @@
      flycheck
      neotree
      exec-path-from-shell
-     eglot
+     emojify
      company
      doom-themes
      doom-modeline

@@ -61,7 +61,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(spaceline-all-the-icons all-the-icons-gnus all-the-icons-ibuffer treemacs-all-the-icons string-inflection cl-lib org-superstar centaur-tabs tabbar yasnippet yaml-mode ws-butler web-mode use-package undo-tree terraform-mode smex protobuf-mode paradox neotree multiple-cursors magit-section js2-mode ivy-prescient go-add-tags git-commit ggtags flymd exec-path-from-shell dtrt-indent doom-themes dashboard counsel-projectile company-go comment-dwim-2 clean-aindent-mode autothemer all-the-icons-ivy-rich all-the-icons-ivy all-the-icons-dired ace-window))
+   '(emojify spaceline-all-the-icons all-the-icons-gnus all-the-icons-ibuffer treemacs-all-the-icons string-inflection cl-lib org-superstar centaur-tabs tabbar yasnippet yaml-mode ws-butler web-mode use-package undo-tree terraform-mode smex protobuf-mode paradox neotree multiple-cursors magit-section js2-mode ivy-prescient go-add-tags git-commit ggtags flymd exec-path-from-shell dtrt-indent doom-themes dashboard counsel-projectile company-go comment-dwim-2 clean-aindent-mode autothemer all-the-icons-ivy-rich all-the-icons-ivy all-the-icons-dired ace-window))
  '(paradox-automatically-star t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -93,7 +93,7 @@
   (separator-line                       (:background base))
   (shadow                               (:background crust))
   (success                              (:foreground green))
-  (vertical-border                      (:foreground surface0 :background nil))
+  (vertical-border                      (:foreground surface0 :background base))
   (warning                              (:foreground yellow))
   (window-border                        (:foreground peach))
   (window-divider                       (:foreground surface0))
