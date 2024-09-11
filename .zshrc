@@ -1,3 +1,4 @@
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,22 +6,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="/home/ben/.oh-my-zsh"
-
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
 POWERLEVEL9K_MODE="nerdfont-complete"
-plugins=(zsh-syntax-highlighting git archlinux man golang kubectl zsh-autosuggestions colored-man-pages taskwarrior npm systemd docker docker-compose emacs helm sudo kubectx)
+plugins=(
+    colorize
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    # zsh-autocomplete
+    kubectl
+    colored-man-pages
+)
 
+export ZSH="/home/ben/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
-# Common alias
 alias ls='lsd'
 alias ll='ls -al'
-
-alias prev="fzf --preview 'bat --style=numbers --color=always {}'"
-export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
-export FZF_CTRL_T_OPTS="--min-height 30 --preview-window down:60% --preview-window noborder --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'"
 
 alias zshrc='${=EDITOR} ~/.zshrc' # Quick access to the ~/.zshrc file
 
@@ -28,17 +28,6 @@ alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 
 alias t='tail -f'
-
-alias -g H='| head'
-alias -g T='| tail'
-alias -g G='| grep'
-alias -g L="| less"
-alias -g M="| most"
-alias -g LL="2>&1 | less"
-alias -g CA="2>&1 | cat -A"
-alias -g NE="2> /dev/null"
-alias -g NUL="> /dev/null 2>&1"
-alias -g P="2>&1| pygmentize -l pytb"
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
@@ -58,19 +47,50 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# Make zsh know about hosts already accessed by SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+alias cat='bat'
+alias rcat='\cat'
 
+alias gaa='git add --all'
+alias gam='git am'
+alias gco='git checkout'
+alias gcam='git commit --all --message'
+alias gc='git commit --verbose'
+alias gca='git commit --verbose --all'
+alias gca!='git commit --verbose --all --amend'
+alias gcan!='git commit --verbose --all --no-edit --amend'
+alias gd='git diff'
+alias gupv='git pull --rebase -v'
+alias gpv='git push --verbose'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase --interactive'
+alias grbo='git rebase --onto'
+alias grbs='git rebase --skip'
+alias gst='git status'
+alias gss='git status --short'
+alias gcb='git checkout -b'
+alias gpf='git push --force-with-lease'
 # extra git aliases
-alias gitcommitempty='git commit --allow-empty -m "chore(): rebuild 👀"'
+alias gitcommitempty='git commit --allow-empty -m ":see_no_evil: empty deploy"'
+alias gitcommitpirate='gcam ":see_no_evil: pirate deploy" --no-verify'
 
-# golint alias
-alias golint="golangci-lint run -E bodyclose -E dupl -E funlen -E gocognit -E goconst -E gocritic -E gocyclo -E godox -E gofmt -E interfacer -E prealloc"
 
-# alias dual screen
-alias x_dualscreen_left="xrandr --output eDP1 --auto --output $(xrandr | grep " connected " | grep -v primary | awk '{print $1}') --auto --left-of eDP1 && ~/.polybar/launch_polybar.sh"
-alias x_dualscreen_right="xrandr --output eDP1 --auto --output $(xrandr | grep " connected " | grep -v primary | awk '{print $1}') --auto --right-of eDP1 && ~/.polybar/launch_polybar.sh"
-alias x_dualscreen_off="xrandr --output  $(xrandr | grep " connected " | grep -v primary | awk '{print $1}') --off && ~/.polybar/launch_polybar.sh"
+alias dmesg='sudo dmesg --color=always -T'
+
+alias e='emacs'
+alias te='emacs -nw'
+
+alias task='go-task'
+
+HISTSIZE=1000
+SAVEHIST=1000
+HISTORY_IGNORE='([bf]g *|cd ..*|l[a,l,s,h,]*|less *|nmcli device wifi connect*)'
+HISTFILE=~/.histfile
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
@@ -86,12 +106,13 @@ setopt hist_find_no_dups        # Dont display duplicates during searches.
 setopt hist_ignore_dups         # Ignore consecutive duplicates.
 setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 setopt hist_ignore_space        # Ignore commands that start with space.
-setopt hist_ignore_dups
 
-HISTSIZE=1000
-SAVEHIST=1000
-HISTORY_IGNORE='([bf]g *|cd ..*|l[a,l,s,h,]*|less *|nmcli device wifi connect*)'
+unsetopt beep
+bindkey -e
+autoload -Uz compinit
+compinit
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
