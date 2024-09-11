@@ -1,4 +1,4 @@
 rofi.combi-modi:    window,drun,ssh,combi
 rofi.theme:         material
-rofi.font:          hack 10
+rofi.font:          NotoMono Nerd Font Mono 10
 rofi.modi:          combi

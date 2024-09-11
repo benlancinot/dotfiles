@@ -1,0 +1,46 @@
+# golang
+https://cprss.s3.amazonaws.com/golangweekly.com.xml golang dev
+https://research.swtch.com/feed.atom golang dev
+https://blog.golang.org/feed.atom?format=xml golang dev
+https://golangnews.com/index.xml golang dev
+https://kill-the-newsletter.com/feeds/zoje5ylc0evdurz1.xml golang dev
+https://www.reddit.com/r/golang/.rss golang dev
+https://dave.cheney.net/category/golang/feed golang dev
+https://rsshub.app/github/trending/daily/golang golang dev
+
+# linux
+https://archlinux.org/feeds/news/ "linux"
+https://9to5linux.com/feed/atom "linux"
+https://itsfoss.com/rss/ "linux"
+
+# security
+
+# hacking
+
+# science
+https://www.universal-sci.com/headlines?format=RSS science
+
+# general programming
+https://hnrss.org/newest dev
+https://lobste.rs/rss dev
+http://softwareengineeringdaily.com/feed/ dev
+http://www.allthingsdistributed.com/atom.xml dev
+https://infos.mytux.fr/rss dev 
+https://hacks.mozilla.org/feed/ dev 
+
+# ai 
+https://news.mit.edu/rss/topic/artificial-intelligence2 dev ai
+http://feeds.feedburner.com/daniel-lemire/atom dev ai
+http://googleresearch.blogspot.fr/feeds/posts/default dev ai 
+
+# company tech blogs
+https://developers.soundcloud.com/blog/blog.rss dev company
+https://netflixtechblog.com/feed dev company
+https://github.blog/category/engineering/feed dev company
+https://blog.kraken.com/engineering/feed/ dev company
+https://engineering.linkedin.com/blog.rss dev company
+https://eng.uber.com/feed/ dev company
+https://blog.cloudflare.com/rss/ dev company 
+https://blog.docker.io/feed/ dev company
+https://engineering.fb.com/feed/ dev company
+

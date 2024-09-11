@@ -1,0 +1,42 @@
+
+[[Snippets]]
+  Description = "Find and replace"
+  Filename = "/home/ben/.config/pet/snippet.toml"
+  Output = ""
+  Tag = ["find"]
+  command = "find <where> -type f -exec sed -i 's/<from>/<to>/g' {} +"
+
+[[Snippets]]
+  Description = "Print specific lines from a CSV file"
+  Filename = "/home/ben/.config/pet/snippet.toml"
+  Output = ""
+  Tag = ["csv"]
+  command = "awk -F, 'NR <=2 {print $0}; NR >= 5 && NR <= 10 {print $0}' <file>.csv"
+
+[[Snippets]]
+  Description = "Create a temporary busybox pod in k8s namespace"
+  Filename = "/home/ben/.config/pet/snippet.toml"
+  Output = ""
+  Tag = ["k8s", "pirate"]
+  command = "kubectl run -n <namespace> -it --rm ben-pirate-debug --image=busybox --restart=Never -- sh"
+
+[[Snippets]]
+  Description = "Retrieve k8s secret"
+  Filename = "/home/ben/.config/pet/snippet.toml"
+  Output = ""
+  Tag = ["k8s", "secret"]
+  command = "kubectl -n <namespace> get secret <secret> -o jsonpath=\"{.data.<secret_key>}\" | base64 --decode"
+
+[[Snippets]]
+  Description = "Port-forward grafana"
+  Filename = "/home/ben/.config/pet/snippet.toml"
+  Output = ""
+  Tag = ["k8s", "grafana", "port-forward"]
+  command = "kubectl port-forward svc/kube-prometheus-stack-grafana -n monitoring 3000:80"
+
+[[Snippets]]
+  Description = "k8s jaeger port-forward"
+  Filename = "/home/ben/.config/pet/snippet.toml"
+  Output = ""
+  Tag = ["k8s", "jaeger", "port-forward"]
+  command = "kubectl port-forward svc/jaeger-query -n monitoring 16686:16686"

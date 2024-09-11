@@ -1,98 +1,142 @@
 {
     "layer": "bottom",
     "position": "bottom",
-    "height": 24,
-    "width": 1850,                                                                                     
-    "margin-bottom": 5, 
-    "modules-left": ["custom/updates", "custom/todo", "sway/workspaces","tray", "sway/mode"],
-    "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "disk","custom/disk_home", "bluetooth","network", "backlight", "pulseaudio", "temperature", "battery", "custom/battery-notify"],
+    "height": 28,
+    "width": 1908,                                                                                     
+    "margin-bottom": 1, 
+    "modules-left": ["clock","custom/sep", "custom/updates", "custom/rss","custom/sep",  "tray", "hyprland/submap"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["custom/sep", "cpu", "memory", "disk","custom/disk_home","custom/sep", "bluetooth","network","custom/sep", "backlight", "pulseaudio","custom/sep", "battery"],
 
-    "sway/workspaces": {
-        "format": "{name}"
-    },
-                                                                                                
-    "sway/mode": {                                                                                    
-        "format": "<span style=\"italic\">{}</span>"                                                  
-    },
-    
-    "sway/window": {
-        "max-length": 25,
-        "tooltip": false
-    },
-
-    "clock": {
-        "interval": 10,
-        "locale": "C",
+	"clock": {
+        "format": "  {:%a, %d %b %Y   %H:%M}",
         "timezone": "Europe/Paris",
-        "format": "{: %a %d %b  %H:%M}",
-        "on-click": "gnome-calendar",
+    	"tooltip": "true",
+        "tooltip-format": " <tt><span size='11pt'>{calendar}</span></tt> ",
+        "calendar": {
+                    "mode"			: "month",
+                		"week-pos"		: "right",
+                		"on-click-right"	: "mode",
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#8caaee'>{}</span>",
+                              "weeks":      "<span color='#babbf1'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#e5c890'><b>{}</b></span>",
+                              "today":      "<span color='#f4b8e4'><b>{}</b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+        }
+	},
+    "tray": {
+        "icon-size": 15
     },
-
+    "custom/updates": {
+        "format": "   {} ",
+        "interval": 3600,
+	    	"tooltip": false,
+        "exec": "checkupdates | wc -l",
+        "on-click": "kitty --hold sh -c 'yay -Syu; paccache -r; pkill -SIGRTMIN+8 waybar;'",
+        "signal": 8
+    },
+    "custom/rss": {
+        "format": "  {} ",
+        "interval": "800",
+        "tooltip": false,
+        "exec": "/home/ben/.config/waybar/newsboat-indicator.sh",
+        "on-click": "kitty --hold sh -c 'pkill newsboat; newsboat'"
+    },
+    "custom/sep": {                                                                               
+        "format": "  <span color='#232634'></span>  "                                  
+    }, 
+    "hyprland/workspaces": {
+        "on-click": "activate",  
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": "",
+            "empty": ""
+        },
+        "persistent-workspaces": {
+            "*": 10,  
+        },
+    },
+    "hyprland/submap": {
+    "format": "  <span color='#232634'></span>  {}",
+    "max-length": 10,
+    "tooltip": false
+    },
     "cpu": {
-        "interval": 10,
-        "format": "{usage:2}%",
+        "interval": 3,
+        "format": " {usage:2}%",
         "max-length": 10,
-        "on-click": "kitty -e 'htop'"
-    },
-
-    "memory": {
-        "interval": 30,
-        "format": "{percentage:2}%",
-
         "max-length": 10,
         "tooltip": false,
         "warning": 70,
-        "critical": 90
+        "critical": 85,
+        "on-click": "kitty -e 'htop'"
+    },
+    "memory": {
+        "interval": 3,
+        "format": " {percentage:2}%",
+        "max-length": 10,
+        "tooltip": false,
+        "warning": 70,
+        "critical": 85,
+        "on-click": "kitty -e 'htop'"
+    },
+	"custom/disk_home": {
+		"format": " {}iB",
+		"interval": 120,
+        "tooltip": false,
+		"exec": "df -h --output=avail $HOME | tail -1 | tr -d ' '"
+	},
+    "disk": {
+        "interval": 120,
+        "tooltip": false,
+        "format": " {free}" 
+    },   
+    "bluetooth": {
+    	"format": "",
+        "format-disabled": "",
+        "format-connected": " {num_connections}",
+        "on-click": "blueberry"
     },
 
     "battery": {
-        "interval": 10,
+        "interval": 5,
         "states": {
-            "warning": 30,
-            "critical": 15
+            "warning": 20,
+            "critical": 12
         },
-        "format": "{icon} {capacity}% ",
-        "format-charging": " {capacity}% ",
-        "format-plugged": "  {capacity}% ",
+        "format": "{icon}  ",
+        "format-charging": " {capacity}%  ",
+        "format-plugged": "  {capacity}%  ",
         "format-icons": ["", "", "", "", ""],
-        "format-alt": "{icon} {time} ",
-    },
-
-    "custom/battery-notify": {                                                                                  
-        "format": "",                                                                             
-        "exec":"~/.config/polybar/scripts/battery-notify/battery-notify.sh",                                             
-        "interval": 120,                                                                              
-    },
-
-    "temperature": {
-        "critical-threshold": 80,
-	    "format-critical": " {temperatureC}°",
-	    "format": " {temperatureC}°"
+        "format-alt": "{icon} {capacity}% ({time})  ",
     },
     
     "network": {
-        "format": "{icon} {essid}  {signalStrength}%",
-        "format-alt": " {icon} {ipaddr}/{cidr}",
-        "format-alt-click": "click-right",
-        "format-wifi": "{icon} {essid}  {signalStrength}%",
+        "format": "{icon}",
+        "format-wifi": "{icon}",
         "format-icons": {
-            "wifi": ["睊", "直" ,""],
+            "wifi": [""],
             "ethernet": [""],
-            "disconnected": [""]
+            "disconnected": [""]
         },
-        "on-click": "nm-connection-editor",
-        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-right-click": "nm-connection-editor",
+        "tooltip-format": "{icon} {essid} [{ipaddr}]  {signalStrength}% <span color='#a6da95'>  {bandwidthUpBits}</span> <span color='#ee99a0'>  {bandwidthDownBits}</span> <span color='#c6a0f6'>󰹹 {bandwidthTotalBits}</span>"
     },
 
     "pulseaudio": {
-      // "scroll-step": 1, // %, can be a float
       "format": "{icon} {volume}% {format_source}",
       "format-bluetooth": "{icon} {volume}% {format_source}",
       "format-bluetooth-muted": " {format_source}",
       "format-muted": "  {format_source}",
-      "format-source": " {volume}%",
-      "format-source-muted": "",
+      "format-source": "  {volume}%",
+      "format-source-muted": " ",
       "format-icons": {
         "headphone": "",
         "hands-free": "",
@@ -108,50 +152,9 @@
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
-        "format-icons": [""],
+        "format-icons": [""],
+        "tooltip": false,
         "on-scroll-down": "brightnessctl -c backlight set 5%-",
         "on-scroll-up": "brightnessctl -c backlight set +5%"
-    },
-
-    "tray": {
-        "icon-size": 15
-    },
-
-	"custom/disk_home": {
-		"format": " {}iB ",
-		"interval": 120,
-		"exec": "df -h --output=avail $HOME | tail -1 | tr -d ' '"
-	},
-    
-    "disk": {
-        "interval": 120,
-        "format": " {free}" 
-    },
-    
-    "bluetooth": {
-    	"format": "  ",
-        "format-disabled": "  ",
-        "format-connected": "  {num_connections} ",
-        "tooltip-format": "{controller_alias}\t{controller_address}",
-    	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-     	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "blueberry",
-        "on-click-right": " ~/.config/polybar/scripts/bluetooth/toggle_bluetooth.sh", 
-    },
-    
-    "custom/updates": {                                                                              
-        "format": "    {} ",
-        "interval": 3600,
-        "exec": "~/.config/polybar/scripts/yay/updates-arch-yay.sh",
-        "on-click": "kitty --hold sh -c 'yay -Syu; paccache -r; pkill -SIGRTMIN+8 waybar'",
-        "signal": 8
-    },
-
-	"custom/todo": {
-		"format": "{} |",
-        "exec":"~/.config/polybar/scripts/task/count.sh",
-        "on-click": "kitty --hold sh -c 'task; pkill -SIGRTMIN+9 waybar'",
-        "interval": 360,
-        "signal": 9,
-	}, 
+    }
 }

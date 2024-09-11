@@ -1,1 +1,4 @@
---theme="Catppuccin-mocha"
+--theme="Catppuccin Frappe"
+--italic-text=always
+--style=full
+--color=always
