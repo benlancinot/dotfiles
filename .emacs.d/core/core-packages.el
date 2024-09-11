@@ -1,6 +1,7 @@
 ;; core-packages.el
 ;; Author: Benjamin Lancinot
 ;; Gestion des configurations des packages installés
+(use-package project)
 
 (use-package ivy
   :diminish ivy-mode
@@ -167,23 +168,8 @@
   (undo-tree-visualizer-diff t)
   (undo-tree-visualizer-timestamps t))
 
-;; Package: yasnippet
-;; GROUP: Editing -> Yasnippet
-;; Package: yasnippet
-(use-package yasnippet
-  :defer t
-  :init
-  (add-hook 'prog-mode-hook 'yas-minor-mode)
-  (yas-global-mode 1)
-  (yas-reload-all)
-  (setq yas-verbosity 1)
-  ;; Wrap around region
-  (setq yas-wrap-around-region t)
-  (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
-  :hook (go-mode . yas-minor-mode))
 
-
- (use-package projectile
+(use-package projectile
      :diminish projectile-mode
      :commands (projectile-ack
          projectile-ag
@@ -229,13 +215,33 @@
   :config
   :bind (("C-c m" . neotree-toggle)))
 
+
 (use-package eglot
   :ensure t
+  :preface
+  (setq-default eglot-workspace-configuration '((:gopls :usePlaceholders t :staticcheck t :completeUnimported t)))
   :config
   (add-to-list 'eglot-server-programs '(go-mode . ("gopls")))
+  (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+
+  (defun my-eglot-organize-imports ()
+    (interactive)
+    (eglot-code-actions nil nil "source.organizeImports" t))
+
+  (defun my-eglot-setup ()
+    (interactive)
+    (add-hook 'go-mode-hook 'eglot-ensure)
+    (add-hook 'before-save-hook 'my-eglot-organize-imports nil t)
+    (add-hook 'before-save-hook 'eglot-format-buffer nil t))
+
+  (add-hook 'c-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook 'eglot-ensure)
   (add-hook 'go-mode-hook 'eglot-ensure)
+  (add-hook 'eglot-managed-mode-hook 'my-eglot-setup)
+
   (define-key eglot-mode-map (kbd "C-c r") 'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c C-i") 'eglot-find-implementation))
+
 
 (use-package company
   :ensure t
@@ -275,5 +281,16 @@
                                        ))
     (org-superstar-special-todo-items t)
     (org-superstar-leading-bullet ""))
+
+(use-package golden-ratio :ensure t)
+(golden-ratio-mode 1)
+
+(use-package copilot
+  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
+  :ensure t)
+
+(add-hook 'prog-mode-hook 'copilot-mode)
+(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
 
 (provide 'core-packages)
