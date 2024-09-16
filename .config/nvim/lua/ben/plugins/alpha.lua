@@ -9,16 +9,26 @@ return {
         local theta = require("alpha.themes.theta")
         local dashboard = require("alpha.themes.dashboard")
 
+
         theta.header.val = {
-            "                                                     ",
-            "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-            "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-            "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-            "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-            "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-            "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-            "                                                     ",
+            [[]],
+            [[]],
+            [[  ／|_       ]],
+            [[ (o o /      ]],
+            [[  |.   ~.    ]],
+            [[  じしf_,)ノ ]],
         }
+
+        -- theta.header.val = {
+        --     "                                                     ",
+        --     "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+        --     "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+        --     "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+        --     "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+        --     "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+        --     "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+        --     "                                                     ",
+        -- }
 
         theta.buttons.val = {
             { type = "text",    val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
@@ -26,10 +36,10 @@ return {
 
             dashboard.button("n", "  New file", ":ene <bar> startinsert <cr>"),
             dashboard.button("SPC ff", "  Find file"),
-            dashboard.button("!", "  dev (go)",
-                ":lua require('telescope.builtin').find_files({cwd = '/home/ben/dev/go/src' })<CR>"),
-            dashboard.button("<", "  infra",
-                ":lua require('telescope.builtin').find_files({cwd = '/home/ben/dev/infra' })<CR>"),
+            dashboard.button("!", "  go-verse",
+                ":lua require('telescope.builtin').find_files({cwd = '/home/ben/dev/go/src/github.com/gustvision/go-verse' })<CR>"),
+            dashboard.button("<", "  iac-verse-core",
+                ":lua require('telescope.builtin').find_files({cwd = '/home/ben/dev/infra/iac-verse-core' })<CR>"),
             dashboard.button("u", "  Sync plugins", ":Lazy sync<CR>"),
             dashboard.button("q", "  Quit", ":qa<CR>"),
         }
