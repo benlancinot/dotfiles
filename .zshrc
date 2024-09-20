@@ -1,3 +1,4 @@
+export SHELL=/bin/zsh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -7,17 +8,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 POWERLEVEL9K_MODE="nerdfont-complete"
-plugins=(
-    colorize
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    # zsh-autocomplete
-    kubectl
-    colored-man-pages
-)
-
-export ZSH="/home/ben/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
 
 alias ls='lsd'
 alias ll='ls -al'
@@ -75,16 +65,18 @@ alias gpf='git push --force-with-lease'
 alias gitcommitempty='git commit --allow-empty -m ":see_no_evil: empty deploy"'
 alias gitcommitpirate='gcam ":see_no_evil: pirate deploy" --no-verify'
 
-
 alias dmesg='sudo dmesg --color=always -T'
 
 alias e='emacs'
 alias te='emacs -nw'
 
+alias v='nvim'
+alias n="nvim -c 'startinsert'"
+
 alias task='go-task'
 
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTORY_IGNORE='([bf]g *|cd ..*|l[a,l,s,h,]*|less *|nmcli device wifi connect*)'
 HISTFILE=~/.histfile
 
@@ -116,3 +108,18 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+plugins=(
+    colorize
+    kubectl
+    colored-man-pages
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    #zsh-autocomplete
+)
+
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
+
+# Source fzf configuration
+eval "$(fzf --zsh)"
