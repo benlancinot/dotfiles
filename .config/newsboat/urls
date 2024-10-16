@@ -14,6 +14,8 @@ https://9to5linux.com/feed/atom "linux"
 https://itsfoss.com/rss/ "linux"
 
 # security
+https://jenkins-x.io/blog/index.xml security
+https://blog.aquasec.com/rss.xml security
 
 # hacking
 
@@ -21,12 +23,17 @@ https://itsfoss.com/rss/ "linux"
 https://www.universal-sci.com/headlines?format=RSS science
 
 # general programming
-https://hnrss.org/newest dev
 https://lobste.rs/rss dev
 http://softwareengineeringdaily.com/feed/ dev
 http://www.allthingsdistributed.com/atom.xml dev
 https://infos.mytux.fr/rss dev 
 https://hacks.mozilla.org/feed/ dev 
+https://itnext.io/feed dev 
+
+
+# linuxporn
+https://www.reddit.com/r/neovim/.rss?sort=new neovim unixporn
+
 
 # ai 
 https://news.mit.edu/rss/topic/artificial-intelligence2 dev ai
@@ -44,3 +51,10 @@ https://blog.cloudflare.com/rss/ dev company
 https://blog.docker.io/feed/ dev company
 https://engineering.fb.com/feed/ dev company
 
+
+
+# tmp
+https://blog.separateconcerns.com/feed.atom
+https://feeds.feedburner.com/BarbarianMeetsCoding
+https://stackoverflow.blog/feed/
+https://www.rockyourcode.com/index.xml/

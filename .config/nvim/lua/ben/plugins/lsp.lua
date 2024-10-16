@@ -37,12 +37,6 @@ return {
                 end,
             })
 
-            local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-            for type, icon in pairs(signs) do
-                local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-            end
-
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
 
@@ -92,7 +86,6 @@ return {
                                 shadow = true,
                                 structtag = true,
                                 undeclaredname = true,
-                                unreachable = true,
                                 useany = false,
                             },
                             -- report vulnerabilities
@@ -145,14 +138,11 @@ return {
                 { "codespell" },
                 { "pylint" },
                 { "shellcheck" },
-
-                --DAP
-                { "delve" },
             })
 
             mason_tool_installer.setup({
                 ensure_installed = ensure_installed,
-                auto_update = true,
+                auto_update = false,
                 run_on_start = true,
                 start_delay = 3000, -- 3 second delay
             })

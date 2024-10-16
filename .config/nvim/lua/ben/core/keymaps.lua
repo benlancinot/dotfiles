@@ -12,14 +12,18 @@ keymap({ "n", "i" }, "<C-s>", "<cmd>w<cr>", { noremap = true })
 keymap("n", "<C-c>", "<cmd>wq<cr>", { noremap = true })
 
 keymap('n', '<leader>pa', 'ggVGp', { desc = 'Select all and paste', noremap = true, silent = true })
-keymap('n', '<leader>sa', 'ggVG', { desc = 'Select all', noremap = true, silent = true })
-keymap("n", "<leader>D", "<cmd>%d+<CR>", { desc = "Remove all file text", silent = true })
+keymap('n', '<C-a>', 'ggVG', { desc = 'Select all', noremap = true, silent = true })
+keymap("n", "<C-D>", "<cmd>%d+<CR>", { desc = "Remove all file text", silent = true })
 
 -- Replace in file command mode
 keymap('n', '<leader>r', ':%s/\\v//c<left><left><left>', { desc = 'Replace', noremap = true })
 
 -- Redo
 keymap('n', 'U', '<C-r>', {})
+
+-- Split window
+keymap("n", "ss", ":split<Return>", { desc = "Split window horizontally", noremap = true})
+keymap("n", "sv", ":vsplit<Return>", { desc = "Split window vertically", noremap = true})
 
 -- Move the line up
 keymap({ "i", "n" }, "<A-Down>", "<Esc>:m .+1<CR>==gi", { desc = "Move the line up", silent = true })

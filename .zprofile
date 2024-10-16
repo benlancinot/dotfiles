@@ -17,7 +17,6 @@ export GTK_THEME='Catppuccin-Frappe-Standard-Lavender-dark:dark'
 
 export PATH="$GOPATH/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$HOME/.gem/ruby/3.0.0/bin:$PATH:$HOME/.npm-global/bin"
 
-
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     # Start with wayland WM
     export WLR_NO_HARDWARE_CURSORS=1
@@ -29,6 +28,7 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     export XDG_CURRENT_DESKTOP=Hyprland
     export CLUTTER_BACKEND=wayland
 
+    #exec sway
     exec Hyprland
 
     # Start i3 WM with X

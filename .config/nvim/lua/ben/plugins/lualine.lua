@@ -1,34 +1,28 @@
 return {
-  "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
-  config = function()
-    require("lualine").setup({
-      extensions = {
-        "nvim-tree",
-        "quickfix",
-        "mason",
-      },
-      options = {
-        theme = "catppuccin",
-        section_separators = { "|", "|" },
-        component_separators = { "", "" },
-      },
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch" },
-        lualine_c = { "filename" },
-        lualine_x = { "filetype" },
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
-      },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "filename" },
-        lualine_x = { "location" },
-        lualine_y = {},
-        lualine_z = {},
-      },
-    })
-  end,
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
+    config = function()
+        require('lualine').setup {
+            options = {
+                theme = "catppuccin",
+                section_separators = { "|", "|" },
+                component_separators = { "", "" },
+                icons_enabled = true,
+            },
+            sections = {
+                lualine_a = { { 'mode', fmt = function(str) return str:sub(1, 1) end } },
+                lualine_b = {},
+                lualine_c = { 'branch', 'diff' },
+
+                lualine_x = { "filetype" },
+                lualine_y = { "progress" },
+                lualine_z = { "location" },
+            },
+            extensions = {
+                "nvim-tree",
+                "quickfix",
+                "mason",
+            },
+        }
+    end
 }

@@ -1,16 +1,8 @@
 export SHELL=/bin/zsh
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-POWERLEVEL9K_MODE="nerdfont-complete"
-
 alias ls='lsd'
 alias ll='ls -al'
+alias tree='lsd --tree'
 
 alias zshrc='${=EDITOR} ~/.zshrc' # Quick access to the ~/.zshrc file
 
@@ -73,6 +65,8 @@ alias te='emacs -nw'
 alias v='nvim'
 alias n="nvim -c 'startinsert'"
 
+alias kx='kubectx'
+
 alias task='go-task'
 
 HISTSIZE=10000
@@ -104,18 +98,13 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
 plugins=(
     colorize
+    aws
     kubectl
     colored-man-pages
     zsh-syntax-highlighting
     zsh-autosuggestions
-    #zsh-autocomplete
 )
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -123,3 +112,4 @@ source $ZSH/oh-my-zsh.sh
 
 # Source fzf configuration
 eval "$(fzf --zsh)"
+eval "$(starship init zsh)"

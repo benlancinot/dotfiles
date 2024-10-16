@@ -6,7 +6,7 @@
     "margin-bottom": 1, 
     "modules-left": ["clock","custom/sep", "custom/updates", "custom/rss","custom/sep",  "tray", "hyprland/submap"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["custom/sep", "cpu", "memory", "disk","custom/disk_home","custom/sep", "bluetooth","network","custom/sep", "backlight", "pulseaudio","custom/sep", "battery"],
+    "modules-right": ["custom/sep", "cpu", "memory", "disk","custom/disk_home","custom/sep", "bluetooth","network","custom/vpn","custom/sep", "backlight", "pulseaudio","custom/sep", "battery"],
 
 	"clock": {
         "format": "  {:%a, %d %b %Y   %H:%M}",
@@ -46,7 +46,8 @@
         "interval": "800",
         "tooltip": false,
         "exec": "/home/ben/.config/waybar/newsboat-indicator.sh",
-        "on-click": "kitty --hold sh -c 'pkill newsboat; newsboat'"
+        "on-click": "kitty --hold sh -c 'pkill newsboat; newsboat; pkill -SIGRTMIN+8 waybar;'",
+        "signal": 8
     },
     "custom/sep": {                                                                               
         "format": "  <span color='#232634'></span>  "                                  
@@ -128,6 +129,12 @@
         },
         "on-right-click": "nm-connection-editor",
         "tooltip-format": "{icon} {essid} [{ipaddr}]  {signalStrength}% <span color='#a6da95'>  {bandwidthUpBits}</span> <span color='#ee99a0'>  {bandwidthDownBits}</span> <span color='#c6a0f6'>󰹹 {bandwidthTotalBits}</span>"
+    },
+    "custom/vpn": {
+        "interval": 5,
+        "exec": "/home/ben/.config/waybar/wireguard.sh -s",
+        "on-click": "kitty --hold sh -c '/home/ben/.config/waybar/wireguard.sh'",
+        "tooltip": false
     },
 
     "pulseaudio": {

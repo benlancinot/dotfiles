@@ -1,45 +1,57 @@
-@define-color base   #303446;
+@define-color base #303446;
 @define-color mantle #292c3c;
-@define-color crust  #232634;
+@define-color crust #232634;
 
-@define-color lavender  #babbf1;
-@define-color yellow    #e5c890;
-@define-color peach     #ef9f76;
-@define-color maroon    #ea999c;
-@define-color red       #e78284;
-@define-color pink      #f4b8e4;
-@define-color blue      #8caaee;
+@define-color lavender #babbf1;
+@define-color yellow #e5c890;
+@define-color peach #ef9f76;
+@define-color maroon #ea999c;
+@define-color red #e78284;
+@define-color pink #f4b8e4;
+@define-color blue #8caaee;
 
 * {
-  transition: none;
-  box-shadow: none;
-  font-family: Noto,Material Design Icons,FontAwesome;
-  font-size: 11px;
-  min-height: 0;
-  color: @blue;
+    transition: none;
+    box-shadow: none;
+    font-family: Noto, Material Design Icons, FontAwesome;
+    font-size: 11px;
+    min-height: 0;
+    color: @blue;
 }
 
 #waybar {
-  margin-top: 1px;
-  background: @base;
-  border-radius: 7px;
-  border: 2px solid @lavender;
+    margin-top: 1px;
+    background: @base;
+    border-radius: 7px;
+    border: 2px solid @lavender;
 }
 
-#battery, #cpu, #disk, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #mpd, #clock, #temperature, #bluetooth, #custom {
-  margin: 6px 6px;
-  min-width: 6px;
+#battery,
+#cpu,
+#disk,
+#memory,
+#network,
+#pulseaudio,
+#idle_inhibitor,
+#backlight,
+#mpd,
+#clock,
+#temperature,
+#bluetooth,
+#custom {
+    margin: 6px 6px;
+    min-width: 6px;
 }
 
 #workspaces {}
 
 #workspaces button {
-  padding: 0 1px;
+    padding: 0 1px;
 }
 
 #workspaces button.empty * {
-  color: @crust;
-  background: transparent;
+    color: @crust;
+    background: transparent;
 }
 
 #workspaces button.visible * {
@@ -53,31 +65,39 @@
 }
 
 #workspaces button.urgent * {
-  color: @red;
-  background: transparent;
+    color: @red;
+    background: transparent;
 }
 
 #tray {
-  margin: 2px 1px;
-  border-radius: 12px;
-  background-color: @crust;
+    margin: 2px 1px;
+    border-radius: 12px;
+    background-color: @crust;
 }
 
 #tray * {
-  padding: 0 3px;
-  border-left: 1px solid @crust;
+    padding: 0 3px;
+    border-left: 1px solid @crust;
 }
 
 #tray *:first-child {
-  border-left: none;
+    border-left: none;
 }
 
 #submap {
-  margin: 5px 5px;
-  color: @pink;
+    margin: 5px 5px;
+    color: @pink;
+}
+
+#custom.vpn.con {
+    background-color: @green;
+}
+
+#custom.vpn.discon {
+    background-color: @red;
 }
 
 tooltip {
-     background-color: @crust;
-     border: 1px solid @lavender;
+    background-color: @crust;
+    border: 1px solid @lavender;
 }
