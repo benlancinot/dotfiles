@@ -171,7 +171,7 @@ return {
         dependencies = "nvim-tree/nvim-web-devicons",
         keys = {
             {
-                "<leader>xa",
+                "<leader>ta",
                 "<Cmd>Trouble diagnostics focus=true<CR>",
                 desc = "Open diagnostics for all buffers in Trouble",
                 mode = "n",
@@ -179,7 +179,7 @@ return {
                 silent = true
             },
             {
-                "<leader>xx",
+                "<leader>tx",
                 "<Cmd>Trouble diagnostics focus=true filter.buf=0<CR>",
                 desc = "Open diagnostics for current buffer in Trouble",
                 mode = "n",
